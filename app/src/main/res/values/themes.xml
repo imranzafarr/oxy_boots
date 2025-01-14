@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EcommerceApp" parent="Theme.Material3.Light.NoActionBar">
+
+    </style>
+
+    <style name="Theme.EcommerceApp" parent="Base.Theme.EcommerceApp" />
+
+    <style name="Theme.EcommerceApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EcommerceApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EcommerceApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+</resources>

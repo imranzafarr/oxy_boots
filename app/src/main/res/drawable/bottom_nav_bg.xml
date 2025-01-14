@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+   android:shape="rectangle" >
+    <solid android:color="@color/white" /> <!-- Background color of the BottomAppBar -->
+    <corners android:radius="150dp" /> <!-- Rounded corners -->
+
+<!--    <path-->
+<!--        android:fillType="evenOdd"-->
+<!--        android:pathData="M0,100 L0,0 L1080,0 L1080,100-->
+<!--        C720,100 540,0 360,100 Z" />-->
+</shape>
