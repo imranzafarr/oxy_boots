@@ -6,6 +6,8 @@ Firebase Firestore is used as a database to store different types of data i.e. u
 Shoe details are fetched using API.
 Key app features including product browsing, cart management, and payment integration, ensuring a smooth checkout process.
 
-#Video Recording
+Video Recording
 https://github.com/user-attachments/assets/c8f05bc8-e3e7-47a1-8cf5-f1da8b17688a
+
+
 
