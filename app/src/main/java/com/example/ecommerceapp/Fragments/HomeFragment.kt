@@ -108,11 +108,6 @@ class HomeFragment : Fragment() {
                 //Checking if response is successful
                 if (response.isSuccessful) {
                     val shoesResponse = response.body()
-//                        binding.shoesRecyclerView.layoutManager =LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//                        binding.shoesRecyclerView.adapter = ShoesRcViewAdapter(shoesResponse.result)
-//                    } else {
-//                        Toast.makeText(context, "API response not successful", Toast.LENGTH_SHORT).show()
-//                    }
                     if(shoesResponse!=null && shoesResponse.result.isNotEmpty()){
                         val allShoes = shoesResponse.result.flatMap { it.products }
                         binding.shoesRecyclerView.layoutManager = GridLayoutManager(context,2)

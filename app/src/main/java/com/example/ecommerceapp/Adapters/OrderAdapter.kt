@@ -5,7 +5,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerceapp.Models.OrderDetails
 import com.example.ecommerceapp.R
@@ -25,7 +27,9 @@ class OrderAdapter(private val orderList: List<OrderDetails>) : RecyclerView.Ada
         val shipping: TextView = itemView.findViewById(R.id.shipping)
         val totalCost: TextView = itemView.findViewById(R.id.totalCost)
         val paymentMethod: TextView = itemView.findViewById(R.id.paymentMethod)
-//        val cartItems: TextView = itemView.findViewById(R.id.cart)
+
+        val expandButton: ImageView = itemView.findViewById(R.id.expandButton)
+        val itemsRecyclerView: RecyclerView = itemView.findViewById(R.id.itemsRecyclerView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -38,7 +42,7 @@ class OrderAdapter(private val orderList: List<OrderDetails>) : RecyclerView.Ada
         val order = orderList[position]
        holder.orderId.text = order.orderId.toString()
         holder.orderDate.text = order.orderDate
-        holder.orderTime.text = order.orderTime
+        holder.orderTime.text = order.deliveryDate
         holder.name.text = order.name
         holder.email.text = order.email
         holder.phone.text = order.phone
@@ -49,9 +53,17 @@ class OrderAdapter(private val orderList: List<OrderDetails>) : RecyclerView.Ada
         holder.shipping.text = order.shippingFee.toString()
         holder.totalCost.text = order.totalCost.toString()
 
-        // Displaying cart items (You can format this based on your needs)
-//        val cartItems = order.cartItems.joinToString { "${it.name} x${it.selectedQuantity}" }
-//        holder.cartItems.text = cartItems
+        holder.itemsRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
+        holder.itemsRecyclerView.adapter = ItemsAdapter(order.cartItems)
+
+        // Handle expand/collapse
+        var isExpanded = false
+        holder.expandButton.setOnClickListener {
+            isExpanded = !isExpanded
+            holder.itemsRecyclerView.visibility = if (isExpanded) View.VISIBLE else View.GONE
+            holder.expandButton.rotation = if (isExpanded) 180f else 0f
+        }
+
     }
 
     override fun getItemCount(): Int = orderList.size

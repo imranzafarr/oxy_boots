@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     android:elevation="2dp">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/idTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_bold"
-                    android:text="Order Id"
-                    android:textColor="@color/text_color"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/idTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Order #"
+            android:textColor="@color/text_color"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/orderId"
@@ -43,9 +42,9 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_bold"
-            android:text="Date"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Order Date"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,16 +66,16 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-                android:id="@+id/timeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:layout_marginTop="10dp"
-                android:text="Time"
-                android:textColor="@color/text_color"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Delivery Date"
+            android:textColor="@color/text_color"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderDate" />
 
         <TextView
             android:id="@+id/orderTime"
@@ -97,14 +96,13 @@
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Order By"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orderTime"
-             />
+            app:layout_constraintTop_toBottomOf="@+id/orderTime" />
 
         <TextView
             android:id="@+id/name"
@@ -126,9 +124,9 @@
             android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Email"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,9 +152,9 @@
             android:id="@+id/phoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Phone"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,9 +179,9 @@
             android:id="@+id/addressTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Address"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -210,9 +208,9 @@
             android:id="@+id/methodTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Payment Method"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -238,38 +236,13 @@
             android:id="@+id/itemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="No. of Shoes"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/paymentMethod" />
-
-        <!--        <TextView-->
-<!--            android:id="@+id/cartTextView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito_bold"-->
-<!--            android:text="Shoes"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/items" />-->
-<!--                <TextView-->
-<!--                    android:id="@+id/cart"-->
-<!--                    android:layout_width="200dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="@font/nunito"-->
-<!--                    android:text="1"-->
-<!--                    android:textColor="@color/text_color"-->
-<!--                    android:textSize="13sp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/cartTextView"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/cartTextView"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    />-->
 
         <TextView
             android:id="@+id/items"
@@ -291,9 +264,9 @@
             android:id="@+id/subTotalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Subtotal"
-            android:layout_marginTop="10dp"
             android:textColor="@color/text_color"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -319,11 +292,11 @@
             android:id="@+id/shippingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="Shipping"
+            android:text="Tax (1%)"
             android:textColor="@color/text_color"
             android:textSize="13sp"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtotal" />
 
@@ -347,11 +320,11 @@
             android:id="@+id/totalCostTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito_bold"
             android:text="Total Cost"
             android:textColor="@color/text_color"
             android:textSize="13sp"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shipping" />
 
@@ -364,170 +337,44 @@
             android:text="1"
             android:textColor="@color/text_color"
             android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/totalCostTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/totalCostTextView"
             app:layout_constraintTop_toTopOf="@+id/totalCostTextView"
             app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Details:"
+            android:textColor="@color/text_color"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/totalCostTextView"/>
+        <ImageView
+            android:id="@+id/expandButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/expand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/totalCost" />
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/orderId"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/orderDate"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/orderId" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/orderTime"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/orderDate" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/name"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/orderTime" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/phone"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/name" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/email"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/phone" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/address"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/email" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/paymentMethod"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/address" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/items"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/paymentMethod" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/cart"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/items" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/subtotal"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/cart" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/shipping"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/subtotal" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/totalCost"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/nunito"-->
-<!--            android:textColor="@color/text_color"-->
-<!--            android:textSize="13sp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/shipping" />-->
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/expandButton"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

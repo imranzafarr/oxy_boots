@@ -1,10 +1,8 @@
 package com.example.ecommerceapp
-
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
-
 import android.os.Build
 import android.os.Bundle
 import android.Manifest
@@ -19,7 +17,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ecommerceapp.Models.Cart
-import com.example.ecommerceapp.Models.NotificationItems
 import com.example.ecommerceapp.Models.OrderDetails
 import com.example.ecommerceapp.databinding.ActivityCheckoutBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -32,8 +29,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -87,22 +84,22 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             getCurrentLocation()
         }
 
-
-//       Function to fetch user details for second time order
+//       Function call to fetch user details for second time order
         fetchUserDetails()
+
         //Getting data from previous activity
         val subTotal = intent.getIntExtra("subTotal", 0)
-        val shippingFee = intent.getIntExtra("shippingFee", 0)
+        val tax = intent.getIntExtra("tax", 0)
         val totalCost = intent.getIntExtra("totalCost", 0)
         val cartItems = intent.getParcelableArrayListExtra<Cart>("cartItems") ?: ArrayList()
         val items = intent.getIntExtra("items", 0)
         binding.subtotal.text = "Rs. $subTotal"
-        binding.shipping.text = "Rs. $shippingFee"
+        binding.shipping.text = "Rs. $tax"
         binding.totalCost.text = "Rs. $totalCost"
 
-        //Handling payment button logic
+        // Handling payment button logic
         binding.paymentButton.setOnClickListener {
-            //Setting fields names
+            // Setting fields names
             val name = binding.nameText.text.toString()
             val email = binding.emailText.text.toString()
             val phone = binding.phoneText.text.toString()
@@ -115,7 +112,7 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
             }
 
-            //Checking if the user is logged in
+            // Checking if the user is logged in
             if (currentUserid == null) {
                 Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -125,30 +122,39 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             val orderId = System.currentTimeMillis()
             // Generating order date and time
             val orderDate = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(Date())
-            val orderTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+            // Parse the orderDate to a Date object
+            val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+            val parsedOrderDate = dateFormat.parse(orderDate)
 
-            //Creating order object
+            // Adding one day to the orderDate
+            val calendar = Calendar.getInstance()
+            calendar.time = parsedOrderDate
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            val deliveryDate = dateFormat.format(calendar.time)
+
+//            val orderTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+
+            // Creating order object
             val order = OrderDetails(
                 orderId = orderId,
                 uid = currentUserid,
-                name = name,
-                email = email,
+                name = name, email = email,
                 phone = phone,
                 address = address,
                 subTotal = subTotal,
-                shippingFee = shippingFee,
+                shippingFee = tax,
                 totalCost = totalCost,
                 items = items.toString(),
                 paymentMethod = paymentMethod,
                 orderDate = orderDate,
-                orderTime = orderTime,
+                deliveryDate = deliveryDate,
                 cartItems = cartItems
             )
 
-            //Saving order to fireStore database
+            // Saving order to fireStore database
             saveOrderDetails(order)
 
-            //Clearing the cart
+            // Clearing the cart
             clearCart()
         }
 
@@ -158,14 +164,12 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Enable zoom controls
+        // Enabling zoom controls
         map.uiSettings.isZoomControlsEnabled = true
-
         // Setting up map click listener
         map.setOnMapClickListener { latLng ->
             updateLocationOnMap(latLng)
         }
-
         // Requesting location permission if not granted
         if (checkLocationPermission()) {
             getCurrentLocation()
@@ -206,13 +210,13 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
         // Clear previous markers
         map.clear()
 
-        // Add marker at selected location
+        // Adding marker at selected location
         map.addMarker(MarkerOptions().position(latLng))
 
-        // Move camera to location
+        // Moving camera to location
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
 
-        // Update address EditText
+        // Updating address EditText
         getAddressFromLocation(latLng)
     }
 
@@ -280,10 +284,8 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             .setContentText(notificationMessage)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
-
         notificationManager.notify(order.orderId.toInt(), notificationBuilder.build())
-        // Saving notification in FireStore
-        saveNotificationInFireStore(notificationTitle, notificationMessage)
+
     }
 
     // Function to fetch user details for second time order
@@ -302,7 +304,7 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
                     val phone = document.getString("phone") ?: ""
                     val address = document.getString("address") ?: ""
 
-                    // Pre-fill the fields
+                    // Pre-fills the fields
                     binding.nameText.setText(name)
                     binding.emailText.setText(email)
                     binding.phoneText.setText(phone)
@@ -311,55 +313,6 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to fetch user details", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-
-    //Function to save notification in FireStore
-    private fun saveNotificationInFireStore(title: String, message: String) {
-        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-
-        // Checking if user is logged in
-        if (currentUserUid == null) {
-            Toast.makeText(this, "User is not logged in", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-//        // Creating notification object
-//        val notification = NotificationItems(
-//            uid = currentUserUid,
-//            title = title,
-//            message = message,
-//            timestamp = System.currentTimeMillis()
-//        )
-        // Fetch the latest notification to determine the next number
-        db.collection("notifications")
-            .whereEqualTo("uid", currentUserUid)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                val lastNumber = if (querySnapshot.isEmpty) 0 else {
-                    querySnapshot.documents[0].getLong("number")?.toInt() ?: 0
-                }
-                val newNumber = lastNumber + 1
-
-                // Creating notification object with the new number
-                val notification = NotificationItems(
-                    uid = currentUserUid,
-                    title = title,
-                    message = message,
-                    timestamp = System.currentTimeMillis(),
-                    number = newNumber
-                )
-
-                // Saving notification to FireStore
-                db.collection("notifications")
-                    .add(notification)
-                    .addOnSuccessListener {
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Failed to save notification", Toast.LENGTH_SHORT)
-                            .show()
-                    }
             }
     }
 
@@ -382,5 +335,4 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
         }
     }
-
 }

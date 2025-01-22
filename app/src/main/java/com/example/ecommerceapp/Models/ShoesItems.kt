@@ -1,7 +1,6 @@
 package com.example.ecommerceapp.Models
 
-import android.os.Parcel
-import android.os.Parcelable
+
 import java.io.Serializable
 
 annotation class Parcelize

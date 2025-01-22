@@ -40,12 +40,11 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:tabIndicatorFullWidth="false"
-        app:tabIndicatorGravity="bottom"
-        app:tabIndicatorHeight="2dp"
-        app:tabMode="fixed"
+        app:tabMode="scrollable"
+        app:tabIndicator="@null"
         android:layout_marginTop="20dp"
-        app:tabSelectedTextColor="@color/button_color"
+        app:tabBackground="@drawable/tab_bg_selector"
+        app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/text_color" />
 
     <androidx.viewpager2.widget.ViewPager2

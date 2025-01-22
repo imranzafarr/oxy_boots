@@ -163,7 +163,7 @@ class StoreActivity : AppCompatActivity() {
                 R.id.cart -> navigateToFragment(CartFragment(),R.id.cart)
                 R.id.favorite -> navigateToFragment(FavoriteFragment(), R.id.favorite)
                 R.id.order -> navigateToFragment(OrderFragment(),null)
-//                R.id.notification -> navigateToFragment(NotificationsFragment(), null)
+
                 R.id.singOut -> {
                     //Switching to SignIn Activity by clicking on sign out Item
                     startActivity(Intent(this, SignInActivity::class.java))

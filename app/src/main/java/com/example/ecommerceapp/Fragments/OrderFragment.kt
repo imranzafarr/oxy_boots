@@ -14,6 +14,7 @@ import com.example.ecommerceapp.Models.OrderDetails
 import com.example.ecommerceapp.databinding.FragmentOrderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 
 class OrderFragment : Fragment() {

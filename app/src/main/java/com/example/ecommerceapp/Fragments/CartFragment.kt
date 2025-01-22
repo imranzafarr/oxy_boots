@@ -24,10 +24,6 @@ class CartFragment : Fragment() {
     //Defining cartItems
     private val cartItems=ArrayList<Cart>()
 
-    //Shipping fee
-    private val shippingFee=100
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,8 +44,7 @@ class CartFragment : Fragment() {
             requireActivity().onBackPressed()
 
         }
-        // Initialize shipping cost
-        binding.shipping.text = "Rs. $shippingFee"
+
 
         //Setting up RecyclerView
         cartAdapter= CartAdapter(cartItems){ updateCosts() }
@@ -63,15 +58,17 @@ class CartFragment : Fragment() {
 
         binding.checkoutButton.setOnClickListener {
             var subTotal=0
+            var tax=0
             for (item in cartItems){
                 subTotal+=item.price.toInt()*item.selectedQuantity
+                tax=subTotal*1/100
             }
-            val totalCost=subTotal+shippingFee
+            val totalCost=subTotal+tax
             // Adding number of items to the intent
             val items = cartItems.size
             val intent= Intent(requireContext(), CheckoutActivity::class.java).apply{
             putExtra("subTotal",subTotal)
-            putExtra("shippingFee",shippingFee)
+            putExtra("tax",tax)
             putExtra("totalCost",totalCost)
                 putExtra("items",items)
                 putParcelableArrayListExtra("cartItems", ArrayList(cartItems))
@@ -84,18 +81,19 @@ class CartFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun updateCosts() {
         var subtotal = 0
+        var tax=0
 
         // Calculate subtotal based on user-selected quantities
         for (item in cartItems) {
             subtotal += item.price.toInt() * item.selectedQuantity
+            tax=subtotal*1/100
         }
 
         // Update subtotal and total cost TextViews
         binding.subtotal.text = "Rs. $subtotal"
-        val totalCost = subtotal + shippingFee
+        binding.shipping.text = "Rs. $tax"
+        val totalCost = subtotal + tax
         binding.totalCost.text = "Rs. $totalCost"
-
-
 
         // Showing empty text if cart is empty
         if (cartItems.isEmpty()) {

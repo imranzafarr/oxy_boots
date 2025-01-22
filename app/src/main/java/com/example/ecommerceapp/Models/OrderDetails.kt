@@ -13,6 +13,6 @@ data class OrderDetails(
     val items:String="",
     val paymentMethod:String="",
     val orderDate:String="",
-    val orderTime: String = "",
+    val deliveryDate: String = "",
     val cartItems:List<Cart> = emptyList(),
 )
