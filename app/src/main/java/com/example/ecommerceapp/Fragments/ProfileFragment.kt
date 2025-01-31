@@ -37,7 +37,6 @@ class ProfileFragment : Fragment() {
     private val imageUriKey = "profile_image_uri"
     private val userIdKey = "user_id_key"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -107,11 +106,6 @@ class ProfileFragment : Fragment() {
                 // Save the image URI and UID to SharedPreferences
                 saveImageUri(imageUri.toString(), currentUserId)
 
-//                // Pass the URI to the StoreActivity
-//                val intent = Intent(requireContext(), StoreActivity::class.java)
-//                intent.putExtra("PROFILE_IMAGE_URI", imageUri.toString())
-//                startActivity(intent)
-
                 // Load the image using Glide
                 Glide.with(this)
                     .load(imageUri)
@@ -124,6 +118,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    // Function to save image uri
     private fun saveImageUri(uri: String, userId: String) {
         val sharedPreferences = requireActivity().getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
