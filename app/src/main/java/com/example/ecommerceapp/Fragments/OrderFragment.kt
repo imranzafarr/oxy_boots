@@ -14,8 +14,6 @@ import com.example.ecommerceapp.databinding.FragmentOrderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-
-
 class OrderFragment : Fragment() {
 
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}

@@ -45,8 +45,6 @@ class CartFragment : Fragment() {
 
         }
 
-
-
         //Setting up RecyclerView
         cartAdapter= CartAdapter(cartItems){ updateCosts() }
         binding.cartRecyclerView.apply {
@@ -54,9 +52,9 @@ class CartFragment : Fragment() {
             adapter=cartAdapter
 
         }
+
         //Function call to fetch Cart items
         fetchCartItems()
-
         binding.checkoutButton.setOnClickListener {
             var subTotal=0
             var tax=0

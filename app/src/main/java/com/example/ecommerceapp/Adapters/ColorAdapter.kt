@@ -12,7 +12,6 @@ class ColorAdapter(
 ) : RecyclerView.Adapter<ColorAdapter.ColorViewHolder>() {
 
     private var selectedPosition = -1
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.color_rc_view, parent, false)
         return ColorViewHolder(view)

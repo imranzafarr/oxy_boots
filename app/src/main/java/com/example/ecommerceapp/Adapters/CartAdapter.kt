@@ -2,20 +2,13 @@ package com.example.ecommerceapp.Adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ecommerceapp.Models.Cart
-import com.example.ecommerceapp.Models.CartItems
-import com.example.ecommerceapp.R
 import com.example.ecommerceapp.databinding.CartRcViewBinding
-
-
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -30,7 +23,6 @@ class CartAdapter(private val shoes: List<Cart>,
         val binding = CartRcViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartViewHolder(binding)
     }
-
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val shoe = shoes[position]
@@ -44,14 +36,11 @@ class CartAdapter(private val shoes: List<Cart>,
         holder.binding.shoeColor.text = shoe.color
         holder.binding.shoeSize.text = "Size: "+shoe.size
 
-
-        // Initialize quantity and price
+        // Initializing quantity and price
         holder.binding.quantity.text = shoe.selectedQuantity.toString()
         holder.binding.shoePrice.text = "Rs. ${shoe.price.toInt() * shoe.selectedQuantity}"
 
-
-
-        // Handle increase button
+        // Handling increase button
         holder.binding.increaseButton.setOnClickListener {
             if (shoe.selectedQuantity < shoe.quantity.toInt()){
                 shoe.selectedQuantity++
@@ -64,9 +53,6 @@ class CartAdapter(private val shoes: List<Cart>,
 
             onQuantityChanged()
         }
-
-
-
         holder.binding.decreaseButton.setOnClickListener {
             if (shoe.selectedQuantity > 1) {
                 shoe.selectedQuantity--
@@ -79,7 +65,6 @@ class CartAdapter(private val shoes: List<Cart>,
                 onQuantityChanged()
 
         }
-
 
         // Handling click on delete button
         holder.binding.deleteButton.setOnClickListener {
@@ -98,8 +83,6 @@ class CartAdapter(private val shoes: List<Cart>,
 
                         db.collection("cart").document(documentId).delete()
                             .addOnSuccessListener {
-//                                Toast.makeText(context, "Removed from Cart", Toast.LENGTH_SHORT)
-//                                    .show()
                                 (shoes as MutableList).removeAt(position)
                                 notifyItemRemoved(position)
                                 notifyItemRangeChanged(position, shoes.size)
@@ -128,10 +111,7 @@ class CartAdapter(private val shoes: List<Cart>,
                     ).show()
                 }
         }
-
-
     }
-
     override fun getItemCount(): Int = shoes.size
 }
 

@@ -26,13 +26,13 @@
         android:name="com.example.ecommerceapp.Fragments.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
-    <fragment
-        android:id="@+id/notification"
-        android:name="com.example.ecommerceapp.NotificationsFragment"
-        android:label="fragment_notifications"
-        tools:layout="@layout/fragment_notifications" >
+<!--    <fragment-->
+<!--        android:id="@+id/notification"-->
+<!--        android:name="com.example.ecommerceapp.NotificationsFragment"-->
+<!--        android:label="fragment_notifications"-->
+<!--        tools:layout="@layout/fragment_notifications" >-->
 
-    </fragment>
+<!--    </fragment>-->
 
 
     <fragment

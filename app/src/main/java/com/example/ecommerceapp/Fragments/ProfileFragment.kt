@@ -17,7 +17,6 @@ import com.example.ecommerceapp.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-
 class ProfileFragment : Fragment() {
     //Applying binding
     private val binding by lazy {

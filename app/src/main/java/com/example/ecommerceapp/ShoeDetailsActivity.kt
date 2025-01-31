@@ -1,5 +1,4 @@
 package com.example.ecommerceapp
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
@@ -15,7 +14,6 @@ import com.example.ecommerceapp.Adapters.SizeAdapter
 import com.example.ecommerceapp.Models.CartItems
 import com.example.ecommerceapp.Models.ColorItems
 import com.example.ecommerceapp.Models.FavoriteItems
-import com.example.ecommerceapp.Models.ShoesItems
 import com.example.ecommerceapp.databinding.ActivityShoeDetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,7 +37,7 @@ class ShoeDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -53,7 +51,6 @@ class ShoeDetailsActivity : AppCompatActivity() {
         }
 
         // Getting the Shoe details from the intent
-//
         val shoeImage = intent.getStringExtra("image")
         val shoeName = intent.getStringExtra("name")
         val shoeDescription = intent.getStringExtra("description")
@@ -75,7 +72,7 @@ class ShoeDetailsActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.sizeRecyclerView.adapter = SizeAdapter(sizes) { selectedSize ->
             size = selectedSize.toString()
-//
+
         }
 
         // Defining a list of colors (using ARGB values)
@@ -95,7 +92,6 @@ class ShoeDetailsActivity : AppCompatActivity() {
 
         binding.colorRecyclerView.adapter = ColorAdapter(colors) { selectedColorName ->
             color = selectedColorName
-//            Toast.makeText(this, "Selected Color: $color", Toast.LENGTH_SHORT).show()
         }
 
         //Handling click on favorite icon
@@ -159,7 +155,6 @@ class ShoeDetailsActivity : AppCompatActivity() {
 
         //Handling click on cart button
         binding.cartButton.setOnClickListener {
-
             //Checking if size and color are selected
             if(size==null || color==null) {
                 Toast.makeText(this, "Please select both size and color", Toast.LENGTH_SHORT).show()
@@ -180,7 +175,6 @@ class ShoeDetailsActivity : AppCompatActivity() {
             // Checking if the shoe is already in the cart
             cartRef.get()
                 .addOnSuccessListener { querySnapshot ->
-//
                         val cartItem = CartItems(
                             uid = currentUserid,
                             image = shoeImage.toString(),
@@ -207,7 +201,6 @@ class ShoeDetailsActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Failed to add to cart: ${e.message}", Toast.LENGTH_SHORT).show()
                             }
                     }
-//                }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error checking cart: ${e.message}", Toast.LENGTH_SHORT).show()
                 }

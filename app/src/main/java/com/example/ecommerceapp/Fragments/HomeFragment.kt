@@ -28,13 +28,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: ShoesRcViewAdapter
-    private var allShoes: List<ShoesItems> = listOf() // Initialize as empty list
+    private var allShoes: List<ShoesItems> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +72,6 @@ class HomeFragment : Fragment() {
         imageSlider.setImageList(imageList, ScaleTypes.FIT)
         imageSlider.setItemClickListener(object : ItemClickListener {
             override fun doubleClick(position: Int) {
-//               TODO("Not yet implemented")
             }
 
             override fun onItemSelected(position: Int) {

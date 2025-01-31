@@ -37,7 +37,6 @@ class ShoesRcViewAdapter(private val shoes: List<ShoesItems>) : RecyclerView.Ada
         holder.binding.root.setOnClickListener{
             //Passing shoe details to ShoeDetailsActivity
             val intent = Intent(context, ShoeDetailsActivity::class.java).apply {
-
                 putExtra("id",shoe.id)
                 putExtra("image",shoe.image)
                 putExtra("name",shoe.name)

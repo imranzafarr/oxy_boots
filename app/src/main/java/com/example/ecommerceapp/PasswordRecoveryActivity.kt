@@ -18,7 +18,6 @@ class PasswordRecoveryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         setContentView(passwordRecoveryBinding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,11 +25,13 @@ class PasswordRecoveryActivity : AppCompatActivity() {
             insets
         }
         firebaseAuth = FirebaseAuth.getInstance()
+
         //Switching to previous activity
         passwordRecoveryBinding.backImage.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
+
         passwordRecoveryBinding.continueButton.setOnClickListener {
             val email = passwordRecoveryBinding.emailText.text.toString()
             if (email.isEmpty()) {
@@ -45,8 +46,6 @@ class PasswordRecoveryActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         startActivity(Intent(this, SignInActivity::class.java))
                         finish()
-
-
                     }
                     .addOnFailureListener {
                         SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
@@ -55,8 +54,6 @@ class PasswordRecoveryActivity : AppCompatActivity() {
                             .setConfirmText("OK")
                             .show()
                     }
-
-
             }
         }
     }
