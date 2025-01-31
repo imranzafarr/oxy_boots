@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.example.ecommerceapp.Adapters.FavoriteAdapter
 import com.example.ecommerceapp.Models.FavoriteItems
-
-
 import com.example.ecommerceapp.databinding.FragmentFavoriteBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

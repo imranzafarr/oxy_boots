@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
+
     tools:context=".HomeFragment">
 
     <ImageView
@@ -43,55 +45,54 @@
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/cartImage"-->
-<!--        android:layout_width="44dp"-->
-<!--        android:layout_height="44dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:src="@drawable/cart"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <!--    <com.google.android.material.textfield.TextInputLayout-->
-    <!--        android:id="@+id/textInputLayout2"-->
-    <!--        android:layout_width="335dp"-->
-    <!--        android:layout_height="58dp"-->
-    <!--        android:layout_marginTop="30dp"-->
-    <!--        app:boxBackgroundColor="@color/white"-->
-    <!--        app:boxCornerRadiusBottomEnd="20dp"-->
-    <!--        app:boxCornerRadiusBottomStart="20dp"-->
-    <!--        app:boxCornerRadiusTopEnd="20dp"-->
-    <!--        app:boxCornerRadiusTopStart="20dp"-->
-    <!--        app:boxStrokeColor="@color/white"-->
-    <!--        app:boxStrokeWidth="0dp"-->
-    <!--        app:circularflow_radiusInDP="30dp"-->
-    <!--        app:endIconTint="@color/text_color"-->
-    <!--        app:hintEnabled="false"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.5"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView7">-->
 
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:id="@+id/searchView"-->
-    <!--            android:layout_width="335dp"-->
-    <!--            android:layout_height="58dp"-->
-    <!--            android:drawableStart="@drawable/search"-->
-    <!--            android:drawablePadding="15dp"-->
-    <!--            android:fontFamily="@font/nunito"-->
-    <!--            android:hint="Looking for shoes"-->
-    <!--            android:textColor="@color/text_color"-->
-    <!--            android:textColorHint="@color/light_text"-->
-    <!--            tools:layout_editor_absoluteX="54dp" />-->
-    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/searchLayout"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:layout_height="58dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            app:boxBackgroundColor="@android:color/transparent"-->
+<!--            app:boxCornerRadiusBottomEnd="20dp"-->
+<!--            app:boxCornerRadiusBottomStart="20dp"-->
+<!--            app:boxCornerRadiusTopEnd="20dp"-->
+<!--            app:endIconDrawable="@drawable/mic"-->
+<!--            app:endIconMode="custom"-->
+<!--            app:boxCornerRadiusTopStart="20dp"-->
+<!--            app:boxStrokeColor="@color/white"-->
+<!--            app:boxStrokeWidth="0dp"-->
+<!--            app:circularflow_radiusInDP="30dp"-->
+<!--            app:endIconTint="@color/text_color"-->
+<!--            app:hintEnabled="false"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/menuImage"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/search"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:drawableStart="@drawable/search"-->
+<!--                android:drawablePadding="15dp"-->
+<!--                android:fontFamily="@font/nunito"-->
+<!--                android:hint="Looking for shoes"-->
+<!--                android:scrollHorizontally="true"-->
+<!--                android:singleLine="true"-->
+<!--                android:maxLines="1"-->
+<!--                android:ellipsize="end"-->
+<!--                android:textColor="@color/text_color"-->
+<!--                android:textColorHint="@color/light_text"-->
+<!--                tools:layout_editor_absoluteX="54dp" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
     <androidx.cardview.widget.CardView
 
         android:id="@+id/bannerCardView"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -120,7 +121,7 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bannerCardView"
         tools:layout_editor_absoluteY="283dp" />

@@ -1,5 +1,4 @@
 package com.example.ecommerceapp
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -9,7 +8,6 @@ import androidx.core.view.WindowInsetsCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.ecommerceapp.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -32,7 +30,6 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         setContentView(signInBinding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -73,9 +70,6 @@ class SignInActivity : AppCompatActivity() {
             //Google sign in Function call
             signInWithGoogle()
         }
-
-        //handling back press
-        signInBinding.backImage.setOnClickListener { onBackPressed() }
         //Switching to sign up activity
         signInBinding.signUpTextView.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -84,10 +78,9 @@ class SignInActivity : AppCompatActivity() {
         //Switching to password recovery activity
         signInBinding.recoveryPassword.setOnClickListener {
             startActivity(Intent(this, PasswordRecoveryActivity::class.java))
-//            finish()
+
         }
     }
-
     // Login with Email/Password
     private fun signInWithEmail(email: String, password: String) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -154,7 +147,6 @@ class SignInActivity : AppCompatActivity() {
                 }
             }
     }
-
     // Navigate to the next activity
     private fun navigateToNextActivity() {
         val intent = Intent(this, StoreActivity::class.java)

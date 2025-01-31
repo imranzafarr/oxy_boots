@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerceapp.Adapters.NotificationAdapter
-
 import com.example.ecommerceapp.Models.NotificationItems
-
 import com.example.ecommerceapp.databinding.FragmentNotificationsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

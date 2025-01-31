@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout.LayoutParams
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -126,7 +125,6 @@ class MainActivity : AppCompatActivity() {
                         applicationContext,
                         R.drawable.indicator_inactive
                     )
-
                 )
                 it.layoutParams=layoutParams
                 mainBinding.indicatorContainer.addView(it)

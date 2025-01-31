@@ -3,9 +3,7 @@ package com.example.ecommerceapp
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-
 import android.content.Intent
-
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -38,6 +36,7 @@ class ProfileFragment : Fragment() {
     private val sharedPrefs = "profile_prefs"
     private val imageUriKey = "profile_image_uri"
     private val userIdKey = "user_id_key"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,10 +107,10 @@ class ProfileFragment : Fragment() {
                 // Save the image URI and UID to SharedPreferences
                 saveImageUri(imageUri.toString(), currentUserId)
 
-                // Pass the URI to the StoreActivity
-                val intent = Intent(requireContext(), StoreActivity::class.java)
-                intent.putExtra("PROFILE_IMAGE_URI", imageUri.toString())
-                startActivity(intent)
+//                // Pass the URI to the StoreActivity
+//                val intent = Intent(requireContext(), StoreActivity::class.java)
+//                intent.putExtra("PROFILE_IMAGE_URI", imageUri.toString())
+//                startActivity(intent)
 
                 // Load the image using Glide
                 Glide.with(this)
@@ -131,6 +130,10 @@ class ProfileFragment : Fragment() {
         editor.putString(imageUriKey, uri)
         editor.putString(userIdKey, userId)
         editor.apply()
+        // Notify StoreActivity that the image has been updated
+        val intent = Intent("PROFILE_IMAGE_UPDATED")
+        intent.putExtra("IMAGE_URI", uri)
+        requireActivity().sendBroadcast(intent)
     }
 
     //Function to fetch user data

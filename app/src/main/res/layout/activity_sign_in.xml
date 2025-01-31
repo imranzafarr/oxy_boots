@@ -8,16 +8,6 @@
     android:background="#F8F9FA"
     tools:context=".SignInActivity">
 
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="44dp"
-        android:src="@drawable/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

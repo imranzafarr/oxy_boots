@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ecommerceapp.Adapters.ColorAdapter
@@ -55,7 +53,7 @@ class ShoeDetailsActivity : AppCompatActivity() {
         }
 
         // Getting the Shoe details from the intent
-//        val shoe = intent.getSerializableExtra("shoe") as ShoesItems
+//
         val shoeImage = intent.getStringExtra("image")
         val shoeName = intent.getStringExtra("name")
         val shoeDescription = intent.getStringExtra("description")
@@ -77,7 +75,7 @@ class ShoeDetailsActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.sizeRecyclerView.adapter = SizeAdapter(sizes) { selectedSize ->
             size = selectedSize.toString()
-//            Toast.makeText(this, "Selected Size: $size", Toast.LENGTH_SHORT).show()
+//
         }
 
         // Defining a list of colors (using ARGB values)
@@ -182,11 +180,7 @@ class ShoeDetailsActivity : AppCompatActivity() {
             // Checking if the shoe is already in the cart
             cartRef.get()
                 .addOnSuccessListener { querySnapshot ->
-//                    if (!querySnapshot.isEmpty) {
-//                        // Shoe is already in the cart
-//                        Toast.makeText(this, "Already in cart", Toast.LENGTH_SHORT).show()
-//                    } else {
-                        // Adding the shoe to the cart
+//
                         val cartItem = CartItems(
                             uid = currentUserid,
                             image = shoeImage.toString(),

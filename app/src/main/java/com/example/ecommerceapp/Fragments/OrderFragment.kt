@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerceapp.Adapters.OrderAdapter
 import com.example.ecommerceapp.Models.OrderDetails
-
 import com.example.ecommerceapp.databinding.FragmentOrderBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+
 
 
 class OrderFragment : Fragment() {
@@ -88,7 +87,7 @@ class OrderFragment : Fragment() {
         }
     }
 
-    // Function to check if the order list is empty and update the UI accordingly
+    // Function to check if the order list is empty
     private fun toggleEmptyState() {
         if (orderItems.isEmpty()) {
             binding.emptytext.visibility = View.VISIBLE

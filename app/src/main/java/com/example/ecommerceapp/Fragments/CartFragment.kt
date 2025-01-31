@@ -46,6 +46,7 @@ class CartFragment : Fragment() {
         }
 
 
+
         //Setting up RecyclerView
         cartAdapter= CartAdapter(cartItems){ updateCosts() }
         binding.cartRecyclerView.apply {

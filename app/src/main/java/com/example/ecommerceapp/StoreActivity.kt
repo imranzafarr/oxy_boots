@@ -1,8 +1,9 @@
 package com.example.ecommerceapp
-
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -21,7 +22,6 @@ import com.example.ecommerceapp.Models.UserDetails
 import com.example.ecommerceapp.databinding.ActivityStoreBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
 class StoreActivity : AppCompatActivity() {
     //Applying binding
     private val binding by lazy { ActivityStoreBinding.inflate(layoutInflater) }
@@ -34,23 +34,41 @@ class StoreActivity : AppCompatActivity() {
 
     // Keep track of whether we navigated from drawer
     private var isDrawerNavigation = false
+
     // Key for SharedPreferences
     private val sharedPrefs = "profile_prefs"
     private val imageUriKey = "profile_image_uri"
     private val userIdKey = "store_user_id"
+    private val imageUpdateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == "PROFILE_IMAGE_UPDATED") {
+                val imageUri = intent.getStringExtra("IMAGE_URI")
+                val currentUserId = auth.currentUser?.uid
+                if (imageUri != null && currentUserId != null) {
+                    updateNavigationHeaderImage(imageUri)
+                }
+            }
+        }
+    }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UnspecifiedRegisterReceiverFlag")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         setContentView(binding.root)
+        // Registering the broadcast receiver
+        registerReceiver(imageUpdateReceiver, IntentFilter("PROFILE_IMAGE_UPDATED"))
+
+        //Function call to load profile image
+        loadProfileImage()
+
 //        Applying insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         // Setting up NavController
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
@@ -77,11 +95,12 @@ class StoreActivity : AppCompatActivity() {
             }
         }
 
-
         // Getting the header view from NavigationView
         val headerView = binding.navigationView.getHeaderView(0)
+
         // Finding the TextView in the header view
         val usernameTextView = headerView.findViewById<TextView>(R.id.name)
+
         // Fetching user data from FireStore
         val currentUserId = auth.currentUser?.uid
         // Checking if user is logged in
@@ -108,49 +127,45 @@ class StoreActivity : AppCompatActivity() {
                 }
         }
 
-        // Getting the current user's UID
+        }
+
+    //Function to load profile image
+    private fun loadProfileImage() {
+        val currentUserId = auth.currentUser?.uid
         if (currentUserId != null) {
-            // Retrieving image URI passed from ProfileFragment
+            val headerView = binding.navigationView.getHeaderView(0)
             val profileImage = headerView.findViewById<ImageView>(R.id.profileImage)
-            val profileImageUri = intent.getStringExtra("PROFILE_IMAGE_URI")
+            val savedUri = loadSavedImageUri(currentUserId)
 
-            if (!profileImageUri.isNullOrEmpty()) {
-                // Save the image URI and associated user ID in SharedPreferences
-                saveImageUri(profileImageUri, currentUserId)
-
-                // Load the image using Glide
-                Glide.with(this)
-                    .load(Uri.parse(profileImageUri))
-                    .circleCrop()
-                    .into(profileImage)
+            if (!savedUri.isNullOrEmpty()) {
+                updateNavigationHeaderImage(savedUri)
             } else {
-                // Load saved image URI from SharedPreferences if user IDs match
-                val savedUri = loadSavedImageUri(currentUserId)
-                if (!savedUri.isNullOrEmpty()) {
-                    Glide.with(this)
-                        .load(Uri.parse(savedUri))
-                        .circleCrop()
-                        .into(profileImage)
-                } else {
-                    // Set default image if no URI is available
-                    profileImage.setImageResource(R.drawable.image) // Replace with your placeholder image
-                }
+                profileImage.setImageResource(R.drawable.image)
             }
         }
     }
 
-    //Function to save image in local storage
-    private fun saveImageUri(uri: String,userId: String) {
-        val sharedPreferences = getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("$imageUriKey-$userId", uri) // Save URI with user ID as part of the key
-        editor.putString(userIdKey, userId) // Save the current user ID
-        editor.apply()
+    //Function to update drawer image
+    private fun updateNavigationHeaderImage(imageUri: String) {
+        val headerView = binding.navigationView.getHeaderView(0)
+        val profileImage = headerView.findViewById<ImageView>(R.id.profileImage)
+
+        Glide.with(this)
+            .load(Uri.parse(imageUri))
+            .circleCrop()
+            .into(profileImage)
     }
+
     // Function to load image URI from SharedPreferences
     private fun loadSavedImageUri(userId: String): String? {
         val sharedPreferences = getSharedPreferences(sharedPrefs, Context.MODE_PRIVATE)
-        return sharedPreferences.getString("$imageUriKey-$userId", null)
+        val savedUserId = sharedPreferences.getString(userIdKey, null)
+        return if (savedUserId == userId) {
+            sharedPreferences.getString(imageUriKey, null)
+        } else {
+            null
+        }
+
     }
 
     // Function to handle drawer navigation
@@ -230,7 +245,13 @@ class StoreActivity : AppCompatActivity() {
             }
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister the broadcast receiver
+        unregisterReceiver(imageUpdateReceiver)
     }
+    }
+
 
 
 

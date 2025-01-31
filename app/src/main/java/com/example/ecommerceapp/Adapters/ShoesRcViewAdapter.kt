@@ -3,24 +3,16 @@ package com.example.ecommerceapp.Adapters
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
-
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.ecommerceapp.Models.Category
 import com.example.ecommerceapp.Models.ShoesItems
-
 import com.example.ecommerceapp.ShoeDetailsActivity
-
 import com.example.ecommerceapp.databinding.ShoesRcViewBinding
-
-
 
 class ShoesRcViewAdapter(private val shoes: List<ShoesItems>) : RecyclerView.Adapter<ShoesRcViewAdapter.ShoeViewHolder>() {
 
-    // ViewHolder class with binding
     class ShoeViewHolder(val binding: ShoesRcViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoeViewHolder {
@@ -37,8 +29,7 @@ class ShoesRcViewAdapter(private val shoes: List<ShoesItems>) : RecyclerView.Ada
         Glide.with(context).load(shoe.image).apply(RequestOptions().centerCrop()).into(holder.binding.shoeImage)
         // Binding name
         holder.binding.shoeName.text = shoe.name
-        // Binding price
-//        holder.binding.shoePrice.text = shoe.description
+
         // Binding price
         holder.binding.shoePrice.text = "Rs. ${shoe.price}"
 

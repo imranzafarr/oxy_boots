@@ -49,7 +49,6 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
     private val currentUserid = FirebaseAuth.getInstance().currentUser?.uid
 
     @SuppressLint("SetTextI18n")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -132,8 +131,6 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             calendar.add(Calendar.DAY_OF_YEAR, 1)
             val deliveryDate = dateFormat.format(calendar.time)
 
-//            val orderTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
-
             // Creating order object
             val order = OrderDetails(
                 orderId = orderId,
@@ -163,7 +160,6 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
     // Function to handle map ready event
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-
         // Enabling zoom controls
         map.uiSettings.isZoomControlsEnabled = true
         // Setting up map click listener
@@ -303,7 +299,6 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
                     val email = document.getString("email") ?: ""
                     val phone = document.getString("phone") ?: ""
                     val address = document.getString("address") ?: ""
-
                     // Pre-fills the fields
                     binding.nameText.setText(name)
                     binding.emailText.setText(email)
