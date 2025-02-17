@@ -24,7 +24,6 @@ class CategoryActivity : AppCompatActivity() {
         ActivityCategoryBinding.inflate(layoutInflater)
     }
     private lateinit var adapter: CategoryFragmentAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -52,16 +51,13 @@ class CategoryActivity : AppCompatActivity() {
                         val categories = it.result
                         adapter = CategoryFragmentAdapter(this@CategoryActivity, categories)
                         binding.categoryViewPager.adapter = adapter
-
                         // Set up TabLayout with ViewPager2
                         TabLayoutMediator(binding.tabLayout, binding.categoryViewPager) { tab, position ->
                             tab.text = categories[position].category
                         }.attach()
                     }
-
                 }
             }
-
             override fun onFailure(call: Call<ShoesResponse>, t: Throwable) {
                 Toast.makeText(this@CategoryActivity, "Failed to fetch Shoes Data: ${t.message}", Toast.LENGTH_SHORT).show()
             }

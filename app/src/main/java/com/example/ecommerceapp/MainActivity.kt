@@ -17,37 +17,51 @@ import com.example.ecommerceapp.Models.OnBoardingItems
 import com.example.ecommerceapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    // Adapter for onboarding items
     private lateinit var onboardingItemsAdapter: OnBoardingItemsAdapter
+
+    // View binding for accessing UI components efficiently
     private val mainBinding:ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(mainBinding.root)
+        setContentView(mainBinding.root)  // Sets the root view using view binding
+
+        // Adjusts padding to prevent UI elements from overlapping with system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Function call foe setting onBoarding Items
+
+        // Initialize and set up the onboarding items for the ViewPager
         setOnboardingItems()
-        //Function call for setting up indicators
+
+        // Set up the indicator dots at the bottom
         setupIndicators()
-        //Function call for setting current indicator
+
+        // Highlight the first indicator as the default selection
         setCurrentIndicators(0)
     }
 
-    //Function for setting current indicator
+    /**
+     * Updates the indicator UI to show which onboarding page is currently active.
+     * Also updates the text of the next button.
+     */
     @SuppressLint("SetTextI18n")
     private fun setCurrentIndicators(position: Int) {
-        //Getting child count of the indicator container
+
         val childCount=mainBinding.indicatorContainer.childCount
+
+        // Loop through all indicators and update their drawable based on the current position
         for (i in 0 until childCount){
-            //Getting the image view
+
             val imageView=mainBinding.indicatorContainer.getChildAt(i) as ImageView
-            //Checking if the position is equal to the current position
+
             if(i==position){
-                //Setting the drawable for the image view
+                // Set active indicator drawable for the selected position
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
                         applicationContext,
@@ -55,22 +69,23 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             }
-            //Checking if the position is not equal to the current position
+
             else
             {
+                // Set inactive indicator drawable for unselected positions
                 imageView.setImageDrawable(
-                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive
-                    ))
+                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive))
             }
         }
-        if (position == 0) {
-            mainBinding.nextButton.text = "Get Started"  // When on First item
-        } else {
-            mainBinding.nextButton.text = "Next"  // For all other items
-        }
+
+        // Update the next button text based on the current onboarding item
+        mainBinding.nextButton.text = if (position == 0) "Get Started" else "Next"
     }
 
-    //Function for setting onBoarding Items
+    /**
+     * Initializes the onboarding ViewPager with a list of onboarding items and
+     * sets up a page change listener to update indicators accordingly.
+     */
     private fun setOnboardingItems(){
          onboardingItemsAdapter=OnBoardingItemsAdapter(
             listOf(
@@ -90,32 +105,45 @@ class MainActivity : AppCompatActivity() {
                     title = "Summer Shoes Nike 2022",
                     description = "Transform Your Space with Unique and Elegant Designs")))
 
+        // Set adapter for ViewPager
         mainBinding.onBoardingViewPager.adapter=onboardingItemsAdapter
+
+        // Registering a listener to detect page changes and update indicators
         mainBinding.onBoardingViewPager.registerOnPageChangeCallback(object:
-        //Registering on page change callback
+
         ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                // Update indicator based on the new selected page
                 setCurrentIndicators(position)
             }
         })
 
+        // Disable overscroll effect on ViewPager to prevent the glow effect when swiping
         (mainBinding.onBoardingViewPager.getChildAt(0)
                 as RecyclerView).overScrollMode= RecyclerView.OVER_SCROLL_NEVER
+
+        // Set click listener for the "Next" button
         mainBinding.nextButton.setOnClickListener {
             if (mainBinding.onBoardingViewPager.currentItem + 1 < onboardingItemsAdapter.itemCount) {
                 mainBinding.onBoardingViewPager.currentItem += 1
             } else {
+                // If on the last page, navigate to the SignInActivity
                 navigateToNextActivity()
             }
 
 
         }}
-    //Function for setting up indicators
+
+    /**
+     * Creates and sets up indicator dots for each onboarding item.
+     */
     private fun setupIndicators(){
         val indicators= arrayOfNulls<ImageView>(onboardingItemsAdapter.itemCount)
         val layoutParams= LayoutParams(WRAP_CONTENT,WRAP_CONTENT)
-        layoutParams.setMargins(8,0,8,0)
+        layoutParams.setMargins(8,0,8,0) // Add margin between indicators
+
+        // Create indicators dynamically based on the number of onboarding items
         for(i in indicators.indices){
             indicators[i]=ImageView(applicationContext)
             indicators[i]?.let {
@@ -126,15 +154,19 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
                 it.layoutParams=layoutParams
+                // Add indicator to the container
                 mainBinding.indicatorContainer.addView(it)
             }
         }
 
     }
-    //Function for navigating to next activity
+
+    /**
+     * Navigates to the SignInActivity after the onboarding process is completed.
+     */
     private fun navigateToNextActivity(){
         startActivity(Intent(applicationContext,SignInActivity::class.java))
-        finish()
+        finish() // Close the onboarding activity to prevent returning to it
 
     }
 }

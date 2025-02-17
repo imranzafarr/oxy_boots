@@ -273,7 +273,7 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
             notificationManager.createNotificationChannel(notificationChannel)
         }
         val notificationTitle = "Order Placed Successfully"
-        val notificationMessage = "Your order (ID: ${order.orderId}) has been placed."
+        val notificationMessage = "Your order has been placed"
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.notificationtwo)
             .setContentTitle(notificationTitle)
@@ -299,7 +299,7 @@ class CheckoutActivity : AppCompatActivity(), OnMapReadyCallback {
                     val email = document.getString("email") ?: ""
                     val phone = document.getString("phone") ?: ""
                     val address = document.getString("address") ?: ""
-                    // Pre-fills the fields
+                    // Pre-filling the fields
                     binding.nameText.setText(name)
                     binding.emailText.setText(email)
                     binding.phoneText.setText(phone)

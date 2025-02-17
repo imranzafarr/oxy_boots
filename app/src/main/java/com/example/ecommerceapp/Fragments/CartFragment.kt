@@ -1,5 +1,4 @@
 package com.example.ecommerceapp.Fragments
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -42,7 +41,6 @@ class CartFragment : Fragment() {
         //backImage click effect
         binding.backImage.setOnClickListener {
             requireActivity().onBackPressed()
-
         }
 
         //Setting up RecyclerView
@@ -50,7 +48,6 @@ class CartFragment : Fragment() {
         binding.cartRecyclerView.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             adapter=cartAdapter
-
         }
 
         //Function call to fetch Cart items
@@ -74,7 +71,6 @@ class CartFragment : Fragment() {
         }
             startActivity(intent)
         }
-
         }
 
     @SuppressLint("SetTextI18n")

@@ -47,6 +47,5 @@ class OnBoardingItemsAdapter(private val onBoardingItems: List<OnBoardingItems>)
             holder.extraImage.visibility = View.GONE
         }
     }
-
-
 }
+
